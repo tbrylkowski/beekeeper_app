@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bee_app/widgets/hives_list.dart';
-import 'package:bee_app/screens/add_new_hive_screen.dart';
-
+import 'package:bee_app/widgets/add_hive_floating_action_button.dart';
 class HomeScreen extends StatelessWidget {
+  static String name = "HomeScreen";
   final _itemList = 10;
 
   @override
@@ -22,18 +22,11 @@ class HomeScreen extends StatelessWidget {
               onPressed: null),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.amber,
-        onPressed: () => showModalBottomSheet(
-            context: context, builder: (context) => AddNewHiveScreen()),
-      ),
+      floatingActionButton: new AddHiveFAB(text: 'DODAJ UL'),
       body: Container(
         child: HivesList(itemList: _itemList),
       ),
     );
   }
 }
+
