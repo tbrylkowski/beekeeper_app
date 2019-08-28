@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bee_app/widgets/hives_list.dart';
-import 'package:bee_app/widgets/add_hive_floating_action_button.dart';
+import 'package:bee_app/widgets/add_hive_fab.dart';
 class HomeScreen extends StatelessWidget {
   static String name = "HomeScreen";
   final _itemList = 10;
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: null),
         ],
       ),
-      floatingActionButton: new AddHiveFAB(text: 'DODAJ UL'),
+      floatingActionButton: new AddHiveFAB(text:"Dodaj Ul"),
       body: Container(
         child: HivesList(itemList: _itemList),
       ),
