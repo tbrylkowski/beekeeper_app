@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:bee_app/models/hives_data.dart';
+import 'package:bee_app/models/hive_data.dart';
+import 'package:provider/provider.dart';
 
 class AddNewHiveScreen extends StatefulWidget {
   static String name = "AddNewHiveScreen";
@@ -26,6 +29,10 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
     super.initState();
   }
 
+  void createNewHive() {
+    final _newHive = Hive(_startTime, _controllerHiveNumber.text);
+  }
+
   void pickStartDateTime() async {
     DateTime dateTime = await showDatePicker(
         context: context,
@@ -43,83 +50,97 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.amber,
-      appBar: AppBar(
-        elevation: 0.0,
-      ),
-      body: Container(
-        padding: EdgeInsets.only(top: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.only(bottom: 16.0, left: 16.0),
-                width: MediaQuery.of(context).size.width,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "Dodaj nowy ul",
-                    style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+    return Consumer<HivesData>(
+      builder: (context, hivesList, child) => Scaffold(
+        backgroundColor: Colors.amber,
+        appBar: AppBar(
+          elevation: 0.0,
+        ),
+        body: Container(
+          padding: EdgeInsets.only(top: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: EdgeInsets.only(bottom: 16.0, left: 16.0),
+                  width: MediaQuery.of(context).size.width,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "Dodaj nowy ul",
+                      style: TextStyle(
+                          fontSize: 25.0, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25.0),
-                    topLeft: Radius.circular(25.0),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25.0),
+                      topLeft: Radius.circular(25.0),
+                    ),
                   ),
-                ),
-                child: Form(
+                  child: Form(
                     child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: kStartTimeHintText,
-                        ),
-                        onTap: pickStartDateTime,
-                        controller: _controllerStartTime,
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: kStartTimeHintText,
+                            ),
+//                        TODO: Bug remove keyboard before Calendar
+                            onTap: pickStartDateTime,
+                            controller: _controllerStartTime,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            controller: _controllerHiveNumber,
+                            keyboardType: TextInputType.numberWithOptions(),
+                            decoration:
+                                InputDecoration(hintText: "Wpisz numer ula."),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          RaisedButton(
+                            textColor: Colors.black,
+                            color: Colors.amber,
+                            elevation: 0.0,
+                            padding: EdgeInsets.all(0.0),
+                            shape: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            onPressed: () {
+                              hivesList.add(Hive(_startTime, _controllerHiveNumber.text));
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Dodaj")),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        controller: _controllerHiveNumber,
-                        keyboardType: TextInputType.numberWithOptions(),
-                        decoration:
-                            InputDecoration(hintText: "Wpisz numer ula."),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      RaisedButton(
-                        padding: EdgeInsets.all(0.0),
-                        onPressed: () {
-                          print('dzial');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(color: Colors.amber),
-                            child: Text("Dodaj nowy ul do listy.")),
-                      )
-                    ],
+                    ),
                   ),
-                )),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

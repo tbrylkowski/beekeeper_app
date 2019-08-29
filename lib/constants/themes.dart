@@ -18,5 +18,7 @@ ThemeData _buildLightTheme() {
         color: Colors.black,
       ),
     ),
+    primaryColor: Colors.amber,
+    brightness: Brightness.light,
   );
 }

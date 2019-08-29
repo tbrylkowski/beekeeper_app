@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/add_hive_screen.dart';
 import 'constants/themes.dart';
-
+import 'package:provider/provider.dart';
+import 'models/hives_data.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: HomeScreen.name,
-      routes: {
-        HomeScreen.name: (context) => HomeScreen(),
-        AddNewHiveScreen.name: (context) => AddNewHiveScreen(),
-      },
-      theme: kLightBeeKeeperTheme,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(builder: (context) => HivesData()),
+      ],
+      child: MaterialApp(
+        initialRoute: HomeScreen.name,
+        routes: {
+          HomeScreen.name: (context) => HomeScreen(),
+          AddNewHiveScreen.name: (context) => AddNewHiveScreen(),
+        },
+        theme: kLightBeeKeeperTheme,
+      ),
     );
   }
 }
