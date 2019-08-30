@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
-import 'hive_tile.dart';
+import 'hive_list_item.dart';
+import 'package:provider/provider.dart';
+import 'package:bee_app/models/hives_data.dart';
 
-class HivesList extends StatelessWidget {
-  const HivesList({
-    Key key,
-    @required int itemList,
-  })  : _itemList = itemList,
-        super(key: key);
-
-  final int _itemList;
-
+class HivesListView extends StatefulWidget {
   @override
-  Widget build(BuildContext _) {
-    return ListView.builder(
-        itemCount: _itemList,
-        itemBuilder: (_, index) {
-          return new HiveTile(index: index);
-        });
+  _HivesListViewState createState() => _HivesListViewState();
+}
+
+class _HivesListViewState extends State<HivesListView> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<HivesData>(
+      builder: (context, hivesData, child) {
+        final hivesList = hivesData.list;
+        return ListView.builder(
+
+          itemCount: hivesData.count,
+          itemBuilder: (context, index) {
+            return HiveListItem(hivesList[index]);
+          },
+        );
+      },
+    );
   }
 }

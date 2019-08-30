@@ -3,7 +3,6 @@ import 'package:bee_app/widgets/hives_list.dart';
 import 'package:bee_app/widgets/add_hive_fab.dart';
 class HomeScreen extends StatelessWidget {
   static String name = "HomeScreen";
-  final _itemList = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: new AddHiveFAB(text:"Dodaj Ul"),
       body: Container(
-        child: HivesList(itemList: _itemList),
+        child: HivesListView(),
       ),
     );
   }

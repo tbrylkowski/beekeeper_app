@@ -3,6 +3,7 @@ import 'hive_data.dart';
 
 class HivesData extends ChangeNotifier {
   List<Hive> _list = [];
+  
 
   int get count => _list.length;
 

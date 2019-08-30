@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:bee_app/models/hives_data.dart';
 import 'package:bee_app/models/hive_data.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AddNewHiveScreen extends StatefulWidget {
   static String name = "AddNewHiveScreen";
@@ -14,7 +15,9 @@ class AddNewHiveScreen extends StatefulWidget {
 class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
   DateTime _startTime;
   final DateFormat formatDate = DateFormat("dd.MM.yyyy");
+
   final String kStartTimeHintText = 'Wybierz date startu';
+
   final _controllerStartTime = TextEditingController();
   final _controllerHiveNumber = TextEditingController();
 
@@ -27,10 +30,6 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
   @override
   void initState() {
     super.initState();
-  }
-
-  void createNewHive() {
-    final _newHive = Hive(_startTime, _controllerHiveNumber.text);
   }
 
   void pickStartDateTime() async {
@@ -62,6 +61,15 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
+                flex: 2,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(FontAwesomeIcons.archive, size: 80,)),
+                ),
+              ),
+              Expanded(
                 flex: 1,
                 child: Container(
                   padding: EdgeInsets.only(bottom: 16.0, left: 16.0),
@@ -77,7 +85,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 5,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
@@ -87,54 +95,55 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                       topLeft: Radius.circular(25.0),
                     ),
                   ),
-                  child: Form(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: kStartTimeHintText,
-                            ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        TextField(
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.date_range),
+                            hintText: kStartTimeHintText,
+                          ),
 //                        TODO: Bug remove keyboard before Calendar
-                            onTap: pickStartDateTime,
-                            controller: _controllerStartTime,
+                          onTap: pickStartDateTime,
+                          controller: _controllerStartTime,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          controller: _controllerHiveNumber,
+                          keyboardType: TextInputType.numberWithOptions(),
+                          decoration: InputDecoration(
+                              hintText: "Wpisz numer ula.",
+                              icon: Icon(Icons.dialpad)),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        RaisedButton(
+                          textColor: Colors.black,
+                          color: Colors.amber,
+                          elevation: 0.0,
+                          padding: EdgeInsets.all(0.0),
+                          shape: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextField(
-                            controller: _controllerHiveNumber,
-                            keyboardType: TextInputType.numberWithOptions(),
-                            decoration:
-                                InputDecoration(hintText: "Wpisz numer ula."),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          RaisedButton(
-                            textColor: Colors.black,
-                            color: Colors.amber,
-                            elevation: 0.0,
-                            padding: EdgeInsets.all(0.0),
-                            shape: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                            onPressed: () {
-                              hivesList.add(Hive(_startTime, _controllerHiveNumber.text));
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                alignment: Alignment.center,
-                                width: MediaQuery.of(context).size.width,
-                                padding: EdgeInsets.all(8.0),
-                                child: Text("Dodaj")),
-                          ),
-                        ],
-                      ),
+                          onPressed: () {
+                            hivesList.add(
+                                Hive(_startTime, _controllerHiveNumber.text));
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.all(8.0),
+                              child: Text("Dodaj")),
+                        ),
+                      ],
                     ),
                   ),
                 ),
