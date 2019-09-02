@@ -8,11 +8,13 @@ class HiveListItem extends StatelessWidget {
   HiveListItem(this._hive);
 
   @override
-  Widget build(BuildContext context) =>
-      Card(
+  Widget build(BuildContext context) => Card(
         child: ListTile(
           title: Text("Czas startu: ${_hive.startDate}"),
-          leading: Icon(FontAwesomeIcons.archive),
+          leading: Icon(
+            FontAwesomeIcons.archive,
+            color: Colors.deepOrangeAccent,
+          ),
           trailing: CircleAvatar(
             child: Text(_hive.hiveNumber),
             backgroundColor: Colors.green,

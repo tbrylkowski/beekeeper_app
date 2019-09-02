@@ -44,6 +44,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
       _startTime = dateTime;
     }
     setState(() {
+      print(_startTime);
       _controllerStartTime.text = formatDate.format(_startTime);
     });
   }
