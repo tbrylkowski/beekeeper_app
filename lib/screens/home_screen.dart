@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bee_app/widgets/hives_list.dart';
-import 'package:bee_app/widgets/add_hive_fab.dart';
+import 'package:bee_app/widgets/hives_list_view.dart';
+import 'package:bee_app/widgets/add_hive_floating_action_butto.dart';
+import 'package:bee_app/constants/strings.dart';
+
 class HomeScreen extends StatelessWidget {
   static String name = "HomeScreen";
 
@@ -15,17 +17,15 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.amber,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.menu, color: Colors.black), onPressed: null),
-          IconButton(
               icon: Icon(Icons.calendar_today, color: Colors.black),
               onPressed: null),
+          IconButton(
+              icon: Icon(Icons.menu, color: Colors.black), onPressed: null),
         ],
       ),
-      floatingActionButton: new AddHiveFAB(text:"Dodaj Ul"),
-      body: Container(
-        child: HivesListView(),
-      ),
+      floatingActionButton: AddHiveFloatingActionButton(
+          text: ADD_HIVE_FLOATING_ACTION_BUTTON_TEXT),
+      body: HivesListView(),
     );
   }
 }
-

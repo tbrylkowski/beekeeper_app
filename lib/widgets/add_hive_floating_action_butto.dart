@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bee_app/screens/add_hive_screen.dart';
 
-class AddHiveFAB extends StatelessWidget {
+class AddHiveFloatingActionButton extends StatelessWidget {
   final String text;
 
-  AddHiveFAB({this.text});
+  const AddHiveFloatingActionButton({this.text});
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'hive_list_item.dart';
 import 'package:provider/provider.dart';
 import 'package:bee_app/models/hives_data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class HivesListView extends StatefulWidget {
   @override
   _HivesListViewState createState() => _HivesListViewState();
@@ -19,7 +20,7 @@ class _HivesListViewState extends State<HivesListView> {
           itemBuilder: (context, index) {
             final item = hivesData.list[index];
             return Dismissible(
-                movementDuration: Duration(seconds: 2),
+                movementDuration: Duration(seconds: 1),
                 direction: DismissDirection.horizontal,
                 key: Key(item.toString()),
                 confirmDismiss: (direction) async {
