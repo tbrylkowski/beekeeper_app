@@ -2,14 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'hive_data.dart';
 
 class HivesData extends ChangeNotifier {
-
   List<Hive> _list = [
-    Hive(DateTime.now(), "3"),
-    Hive(DateTime.now(), "4"),
-    Hive(DateTime.now(), "5"),
+//    Hive(DateTime.now(), 3),
+//    Hive(DateTime.now(), 4),
+//    Hive(DateTime.now(), 5),
   ];
-
-
 
   int get count => _list.length;
 
@@ -20,7 +17,7 @@ class HivesData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void remove(int index){
+  void remove(int index) {
     _list.removeAt(index);
     notifyListeners();
   }

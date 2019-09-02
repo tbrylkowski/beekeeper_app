@@ -67,7 +67,10 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: Align(
                       alignment: Alignment.center,
-                      child: Icon(FontAwesomeIcons.archive, size: 80,)),
+                      child: Icon(
+                        FontAwesomeIcons.archive,
+                        size: 80,
+                      )),
                 ),
               ),
               Expanded(
@@ -134,8 +137,8 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                                 BorderRadius.all(Radius.circular(20.0)),
                           ),
                           onPressed: () {
-                            hivesList.add(
-                                Hive(_startTime, _controllerHiveNumber.text));
+                            hivesList.add(Hive(_startTime,
+                                int.parse(_controllerHiveNumber.text)));
                             Navigator.pop(context);
                           },
                           child: Container(

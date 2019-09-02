@@ -1,14 +1,10 @@
-import 'package:intl/intl.dart';
-
 class Hive {
-  final DateFormat formatDate = DateFormat("dd.MM.yyyy");
-
   DateTime _startDate;
-  String _number;
+  int _number;
 
   Hive(this._startDate, this._number);
 
-  String get startDate => formatDate.format(_startDate);
+  DateTime get startDate => _startDate;
 
-  String get hiveNumber => _number;
+  String get hiveNumber => _number.toString();
 }
