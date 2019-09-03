@@ -1,3 +1,4 @@
+import 'package:bee_app/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:bee_app/models/hives_data.dart';
@@ -16,7 +17,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
   DateTime _startTime;
   final DateFormat formatDate = DateFormat("dd.MM.yyyy");
 
-  final String kStartTimeHintText = 'Wybierz date startu';
+
 
   final _controllerStartTime = TextEditingController();
   final _controllerHiveNumber = TextEditingController();
@@ -64,7 +65,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
               Expanded(
                 flex: 2,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
+                  width: double.infinity,
                   child: Align(
                       alignment: Alignment.center,
                       child: Icon(
@@ -77,7 +78,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                 flex: 1,
                 child: Container(
                   padding: EdgeInsets.only(bottom: 16.0, left: 16.0),
-                  width: MediaQuery.of(context).size.width,
+                  width: double.infinity,
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
@@ -91,7 +92,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
               Expanded(
                 flex: 5,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -108,9 +109,9 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                         TextField(
                           decoration: InputDecoration(
                             icon: Icon(Icons.date_range),
-                            hintText: kStartTimeHintText,
+                            hintText: START_TIME_HINT_TEXT_FILED,
                           ),
-//                        TODO: Bug remove keyboard before Calendar
+//                        TODO: Bug - remove keyboard before Calendar
                           onTap: pickStartDateTime,
                           controller: _controllerStartTime,
                         ),
@@ -121,7 +122,7 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                           controller: _controllerHiveNumber,
                           keyboardType: TextInputType.numberWithOptions(),
                           decoration: InputDecoration(
-                              hintText: "Wpisz numer ula.",
+                              hintText: HIVE_NUMBER_HINT_TEXT_FILED,
                               icon: Icon(Icons.dialpad)),
                         ),
                         SizedBox(
@@ -143,9 +144,9 @@ class _AddNewHiveScreenState extends State<AddNewHiveScreen> {
                           },
                           child: Container(
                               alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
+                              width: double.infinity,
                               padding: EdgeInsets.all(8.0),
-                              child: Text("Dodaj")),
+                              child: Text(ADD_HIVE_BUTTON)),
                         ),
                       ],
                     ),
