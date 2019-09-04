@@ -10,7 +10,7 @@ class AddHiveFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: () {
-        Navigator.pushNamed(context, AddNewHiveScreen.name);
+        Navigator.pushNamed(context, AddNewHiveScreen.id);
       },
       label: Text(
         text,

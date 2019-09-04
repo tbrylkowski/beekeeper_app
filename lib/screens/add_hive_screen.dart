@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AddNewHiveScreen extends StatefulWidget {
-  static String name = "AddNewHiveScreen";
+  static String id = "AddNewHiveScreen";
 
   @override
   _AddNewHiveScreenState createState() => _AddNewHiveScreenState();

@@ -10,7 +10,11 @@ class _HiveScreenState extends State<HiveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Container(
+        child: Center(
+          child: Text("Qeen"),
+        ),
+      ),
     );
   }
 }
