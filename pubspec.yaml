@@ -26,6 +26,8 @@ dependencies:
   intl: ^0.15.7
   provider: ^3.1.0
   font_awesome_flutter: ^8.5.0
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:
