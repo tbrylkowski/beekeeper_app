@@ -37,15 +37,34 @@ class MyApp extends StatelessWidget {
 }
 
 //void main() => runApp(MyApp());
-
+//
 Future main() async {
   List tasks;
 
   var db = DatabaseHelper();
 
-  await db.saveTask(Task(date: 111, description: "New task", done: false));
+  await db.saveTask(Task.fromMap({
+    'date': DateTime.now().millisecondsSinceEpoch,
+    'description': 'New',
+    'done': false
+  }));
 
   print('=== getAllNotes() ===');
   tasks = await db.getAllTask();
   tasks.forEach((task) => print(task));
+
+  print('=== getCount() ===');
+  int count = await db.getCount();
+  print("Count: $count");
+
+  print('=== update() ===');
+  Task updateTask =
+      Task.fromMap({'id': 1, 'description': 'Updated', 'done': false});
+  await db.update(updateTask);
+
+  print('=== getAllNotes() ===');
+  tasks = await db.getAllTask();
+  tasks.forEach((task) => print(task));
+
+  db.close();
 }

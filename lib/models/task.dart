@@ -12,7 +12,7 @@ class Task {
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       columnDate: date,
-      columnDone: description,
+      columnDescription: description,
       columnDone: done == true ? 1 : 0
     };
     if (id != null) {
@@ -21,9 +21,9 @@ class Task {
     return map;
   }
 
-  Task({this.done, this.date, this.description});
+  Task({this.date, this.description, this.done});
 
-  Task.fromMap(Map<String, dynamic> map){
+  Task.fromMap(Map<String, dynamic> map) {
     id = map[columnId];
     date = map[columnDate];
     description = map[columnDescription];
