@@ -1,15 +1,32 @@
+final String columnId = '_id';
+final String columnDate = 'date';
+final String columnDescription = 'description';
+final String columnDone = 'done';
+
 class Task {
-  DateTime _dateTime;
+  int id;
+  int date;
+  String description;
+  bool done;
 
-  String _toDo;
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{
+      columnDate: date,
+      columnDone: description,
+      columnDone: done == true ? 1 : 0
+    };
+    if (id != null) {
+      map[columnId] = id;
+    }
+    return map;
+  }
 
-  Task(this._dateTime, this._toDo);
+  Task({this.done, this.date, this.description});
 
-  String get toDo => _toDo;
-
-  DateTime get dateTime => _dateTime;
-
-  void changeTime(DateTime value) => _dateTime = value;
-
-  void changeToDO(String value) => _toDo = value;
+  Task.fromMap(Map<String, dynamic> map){
+    id = map[columnId];
+    date = map[columnDate];
+    description = map[columnDescription];
+    done = map[columnDone] == 1;
+  }
 }

@@ -1,3 +1,6 @@
+import 'package:bee_app/utils/database_helper.dart';
+import 'models/task.dart';
+
 import 'package:flutter/material.dart';
 import 'screens/bee_hives_screen.dart';
 import 'screens/add_hive_screen.dart';
@@ -33,4 +36,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+
+Future main() async {
+  List tasks;
+
+  var db = DatabaseHelper();
+
+  await db.saveTask(Task(date: 111, description: "New task", done: false));
+
+  print('=== getAllNotes() ===');
+  tasks = await db.getAllTask();
+  tasks.forEach((task) => print(task));
+}
